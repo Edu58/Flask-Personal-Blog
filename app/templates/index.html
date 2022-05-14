@@ -1,22 +1,26 @@
 {% extends 'base.html' %}
 {% from 'bootstrap5/utils.html' import render_icon %}
 
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='index.css') }}">
+{% endblock styles %}
+
 {% block title %} Home {% endblock %}
 
 {% block content %}
 
 {% for blogpost in blogposts %}
-<div class="card rounded-3" style="width: 100%;">
-    <div class="row p-3">
-        <div class="col-sm-5 rounded-3">
-            <img class="card-img"
+<div class="card p-2">
+    <div class="row g-0">
+        <div class="col-sm-4">
+            <img class="card-img img-fluid"
                  src="https://images.unsplash.com/photo-1527960669566-f882ba85a4c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YXdlc29tZSUyMHBpY3xlbnwwfHwwfHw%3D&w=1000&q=80"
                  alt="{{ blogpost.title }}">
         </div>
-        <div class="col-sm-7">
-            <div class="card-body">
-                <h5 class="card-title">{{ blogpost.title }}</h5>
-                <a href="#" class="btn btn-primary float-end">Read</a>
+        <div class="col-sm-6">
+            <div class="card-body text-light">
+                <h5 class="card-title fs-4">{{ blogpost.title }}</h5>
             </div>
         </div>
     </div>
