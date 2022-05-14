@@ -1,9 +1,9 @@
 from flask import Flask
 from config import config_option
-from flask_bootstrap import Bootstrap
+from flask_bootstrap import Bootstrap5
 from flask_moment import Moment
 
-bootstrap = Bootstrap()
+bootstrap = Bootstrap5()
 moment = Moment()
 
 
