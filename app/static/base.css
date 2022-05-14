@@ -8,6 +8,10 @@ background-color: #202330;
 text-rendering: optimizeLegibility;
 }
 
+nav {
+background-color: #18151ff3;
+}
+
 nav #brand {
 font-weight: 600;
 font-size: 1.8rem;
