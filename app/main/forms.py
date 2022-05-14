@@ -14,5 +14,6 @@ class NewBlogPost(FlaskForm):
 
 
 class CommentForm(FlaskForm):
-    comment = TextAreaField('Write Your Comment', validators=[DataRequired(), length(max=200)])
+    username = StringField('', validators=[DataRequired(), length(max=30)])
+    comment = TextAreaField('Write Your Comment', validators=[DataRequired(), length(max=100)])
     submit = SubmitField('comment')

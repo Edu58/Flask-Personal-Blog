@@ -13,23 +13,24 @@ def index():
     return render_template('index.html', blogposts=blogposts)
 
 
-@main.route('/<post_title>/<post_id>')
+@main.route('/<post_title>/<post_id>', methods=['GET', 'POST'])
 def read_post(post_title, post_id):
     post = BlogPost.query.filter_by(post_id=post_id).first()
 
     comment_form = CommentForm()
 
-    post_comments = Comments.query.filter_by(post_id=post_id).first()
+    post_comments = Comments.query.filter_by(post_id=post_id).all()
 
     if request.method == "POST":
         if comment_form.validate_on_submit():
 
             comment = comment_form.comment.data
-            new_comment = Comments(comment=comment, post_id=post_id, user_id=current_user.user_id)
+            username = comment_form.username.data
+            new_comment = Comments(comment=comment, post_id=post_id, username=username)
 
             Comments.save_comment(new_comment)
 
-            return redirect(url_for('main.add_comment', post_id=post_id))
+            return redirect(url_for('main.read_post', post_id=post_id, post_title=post_title, comments=post_comments))
         else:
             flash('Invalid comment. Remember, BE NICE')
 

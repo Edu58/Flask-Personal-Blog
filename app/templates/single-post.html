@@ -23,8 +23,26 @@
     <p class="fs-3 mt-5">Comments</p>
     <form method="POST">
         {{ comment_form.csrf_token() }}
-        {{ render_field(comment_form.comment, placeholder='Be nice. 200 characters max') }}
+        {{ render_field(comment_form.username, placeholder='your name') }}
+        {{ render_field(comment_form.comment, placeholder='Be nice') }}
         {{ render_field(comment_form.submit, button_size='sm', class="btn-success") }}
     </form>
+</div>
+
+<div class="mt-4">
+    <ol class="list-group list-group-numbered text-light">
+        {% for comment in comments %}
+        <li class="list-group-item my-3">
+            <small class="float-end fst-italic">
+                {{ moment(comment.posted_on).format('LL') }}
+            </small>
+
+            {{ comment.comment }}
+            <div>
+                <small class="float-end fst-italic">by {{ comment.username }} </small>
+            </div>
+        </li>
+        {% endfor %}
+    </ol>
 </div>
 {% endblock content %}

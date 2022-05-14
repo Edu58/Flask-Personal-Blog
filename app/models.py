@@ -14,7 +14,6 @@ class User(UserMixin, db.Model):
     last_name = db.Column(db.String(25), nullable=False)
     pass_secure = db.Column(db.String, nullable=False)
     posts = db.relationship('BlogPost', backref='post_author', lazy='dynamic')
-    comments = db.relationship('Comments', backref='comment_author', lazy='dynamic')
 
     @property
     def password(self):
@@ -67,10 +66,10 @@ class Comments(db.Model):
     __tablename__ = 'comments'
 
     comment_id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String)
     comment = db.Column(db.String, nullable=False)
     posted_on = db.Column(db.DateTime, default=datetime.utcnow)
     post_id = db.Column(db.Integer, db.ForeignKey('blogposts.post_id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('authors.user_id'))
 
     def save_comment(self):
         db.session.add(self)
