@@ -1,5 +1,5 @@
 class Config:
-    pass
+    UPLOADED_PHOTOS_DEST = 'app/static/photos'
 
 
 class DevConfig(Config):
