@@ -30,8 +30,9 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('main.index') }}">
                         <button class="btn btn-sm text-light fw-bold">Home</button>
                     </a>
                 </li>
@@ -50,16 +51,18 @@
                         <button class="btn btn-sm text-light fw-bold" id="add-btn">Add</button>
                     </a>
                 </li>
+                {% else %}
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('auth.logout') }}">
                         <button class="btn btn btn-sm btn-outline-light">Logout</button>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="">
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('auth.login') }}">
                         <button class="btn btn btn-sm btn-outline-light">Login</button>
                     </a>
                 </li>
+                {% endif %}
             </ul>
         </div>
     </div>
