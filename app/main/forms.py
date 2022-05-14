@@ -1,0 +1,17 @@
+from flask_wtf import FlaskForm
+from wtforms import TextAreaField, SubmitField, StringField, FileField
+from wtforms.validators import DataRequired, length
+from flask_wtf.file import FileField, FileRequired
+
+
+class NewBlogPost(FlaskForm):
+    author = StringField('Author', validators=[DataRequired(), length(max=30)])
+    title = StringField('Title', validators=[DataRequired(), length(max=100)])
+    content = TextAreaField('Content', validators=[DataRequired()])
+    cover_image = FileField('Cover image', validators=[FileRequired()])
+    submit = SubmitField('submit')
+
+
+class CommentForm(FlaskForm):
+    comment = TextAreaField('Write Your Comment', validators=[DataRequired(), length(max=200)])
+    submit = SubmitField('comment')
