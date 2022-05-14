@@ -35,6 +35,14 @@
         </ul>
     </div>
 </article>
+
+<div>
+    <form method="POST">
+        {{ form.csrf_token() }}
+        {{ render_field(form.comment, placeholder='Be nice. 200 characters max') }}
+        {{ render_field(form.submit, button_size='sm', class="btn-success") }}
+    </form>
+</div>
 {% endfor %}
 
 {% endblock content %}

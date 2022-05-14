@@ -1,9 +1,9 @@
 from . import main
 from app import db, photos
-from app.models import BlogPost
-from flask import render_template, request, redirect, url_for
-from flask_login import login_required
-from .forms import NewBlogPost
+from app.models import BlogPost, Comments
+from flask import render_template, request, redirect, url_for, flash
+from flask_login import login_required, current_user
+from .forms import NewBlogPost, CommentForm
 from werkzeug.utils import secure_filename
 
 
@@ -43,10 +43,10 @@ def add_blogpost(user_id):
 
 
 @main.route('/comment/<post_id>', methods=["GET", "POST"])
-def add_comment(pitch_id):
+def add_comment(post_id):
     comment_form = CommentForm()
 
-    pitch_comments = Pitches.query.filter_by(pitch_id=pitch_id).first()
+    post_comments = Comments.query.filter_by(post_id=post_id).first()
 
     if request.method == "POST":
         if comment_form.validate_on_submit():
@@ -56,8 +56,8 @@ def add_comment(pitch_id):
 
             Comments.save_comment(new_comment)
 
-            return redirect(url_for('main.index'))
+            return redirect(url_for('main.add_comment', post_id=post_id))
         else:
             flash('Invalid comment. Remember, BE NICE')
 
-    return render_template('comment.html', form=comment_form, comments=pitch_comments)
+    return render_template('comment.html', form=comment_form, comments=post_comments)

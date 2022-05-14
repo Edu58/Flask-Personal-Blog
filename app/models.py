@@ -46,7 +46,8 @@ class BlogPost(db.Model):
     cover_image = db.Column(db.String, nullable=True)
     content = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('authors.user_id'))
-
+    comments = db.relationship('Comments', backref='blogpost', lazy='dynamic')
+    
     def __repr__(self):
         return self.title
 
@@ -70,4 +71,8 @@ class Comments(db.Model):
 
     def save_comment(self):
         db.session.add(self)
+        db.session.commit()
+
+    def delete_comment(self):
+        db.session.delete(self)
         db.session.commit()
