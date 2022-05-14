@@ -7,7 +7,7 @@
     margin: 0 0 2rem 0;
     overflow: hidden;
     position: relative;
-    color: #ffffff;
+    color: #FFF;
 }
 
 .dark {
@@ -35,7 +35,6 @@ h1,
 
 .postcard__img {
     max-height: 180px;
-    width: 100%;
     object-fit: cover;
     position: relative;
 }
