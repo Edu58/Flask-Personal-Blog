@@ -13,17 +13,19 @@
 {% for blogpost in blogposts %}
 <article class="postcard dark">
     <a class="postcard__img_link" href="#">
-        <img class="postcard__img" src="https://picsum.photos/1000/1000" alt="Image Title" />
+        <img class="postcard__img" src="{{ url_for('static', filename=blogpost.cover_image) }}"
+             alt="Image Title"/>
     </a>
     <div class="postcard__text">
         <h1 class="postcard__title blue"><a href="#" class="text-decoration-none">{{ blogpost.title }}</a></h1>
         <div class="postcard__subtitle small">
             <time datetime="2020-05-25 12:00:00">
-                <i>{{ render_icon('calendar3') }}</i> &nbsp; {{ moment(blogpost.created_on).format('LL') }}
+                <i>{{ render_icon('calendar3') }}</i> &nbsp; {{ moment(blogpost.created_on).format('LL') }} by {{
+                blogpost.author }}
             </time>
         </div>
         <div class="postcard__bar"></div>
-        <div class="postcard__preview-txt">{{ blogpost.content }}</div>
+        <div class="postcard__preview-txt">{{ blogpost.content|truncate(250,true,'...') }}</div>
         <ul class="postcard__tagbox">
             <li class="tag__item"><a href="" class="text-decoration-none fs-6">Read</a>
         </ul>

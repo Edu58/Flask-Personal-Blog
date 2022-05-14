@@ -37,8 +37,19 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ url_for('main.add_blogpost') }}">
+                    <a class="nav-link active" aria-current="page"
+                       href="{{ url_for('main.add_blogpost', user_id=current_user.id) }}">
                         <button class="btn btn-sm text-light fw-bold" id="add-btn">Add</button>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="">
+                        <button class="btn btn-sm text-light fw-bold">About</button>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="">
+                        <button class="btn btn-sm text-light fw-bold">Contact</button>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -62,7 +73,6 @@
                         <button class="btn btn-sm text-light fw-bold">Contact</button>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ url_for('auth.login') }}">
                         <button class="btn btn btn-sm btn-outline-light">Login</button>

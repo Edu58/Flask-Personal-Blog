@@ -23,12 +23,15 @@ class User(UserMixin, db.Model):
         self.pass_secure = generate_password_hash(password, method='sha256', salt_length=8)
 
     def verify_password(self, password):
-        return check_password_hash(self.pass_hashed, password)
+        return check_password_hash(self.pass_secure, password)
 
 
 @login.user_loader
 def load_user(user_id):
-    return User.get(user_id)
+    try:
+        return User.query.get(int(user_id))
+    except:
+        return None
 
 
 class BlogPost(db.Model):
