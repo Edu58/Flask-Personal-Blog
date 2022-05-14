@@ -21,7 +21,7 @@
         <h1 class="postcard__title blue"><a href="#" class="text-decoration-none">{{ blogpost.title }}</a></h1>
         <div class="postcard__subtitle small mb-3">
             <p>
-                {{ moment(blogpost.created_on).format('LL') }} - by {{ blogpost.author }}
+                {{ render_icon('calendar3') }} &nbsp; {{ moment(blogpost.created_on).format('LL') }} - by {{ blogpost.author }}
             </p>
         </div>
         <div class="postcard__preview-txt">{{ blogpost.content }}</div>
