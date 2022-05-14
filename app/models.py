@@ -14,6 +14,7 @@ class User(UserMixin, db.Model):
     last_name = db.Column(db.String(25), nullable=False)
     pass_secure = db.Column(db.String(), nullable=False)
     posts = db.relation('BlogPost', backref='author', lazy='dynamic')
+    comments = db.relation('Comments', backref='author', lazy='dynamic')
 
     @property
     def password(self):
