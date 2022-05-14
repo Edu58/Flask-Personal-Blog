@@ -12,9 +12,9 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(100), nullable=False)
     first_name = db.Column(db.String(25), nullable=False)
     last_name = db.Column(db.String(25), nullable=False)
-    pass_secure = db.Column(db.String(), nullable=False)
-    posts = db.relation('BlogPost', backref='author', lazy='dynamic')
-    comments = db.relation('Comments', backref='author', lazy='dynamic')
+    pass_secure = db.Column(db.String, nullable=False)
+    posts = db.relationship('BlogPost', backref='post_author', lazy='dynamic')
+    comments = db.relationship('Comments', backref='comment_author', lazy='dynamic')
 
     @property
     def password(self):
@@ -26,6 +26,9 @@ class User(UserMixin, db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.pass_secure, password)
+
+    def get_id(self):
+        return self.user_id
 
 
 @login.user_loader
@@ -47,7 +50,7 @@ class BlogPost(db.Model):
     content = db.Column(db.String, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('authors.user_id'))
     comments = db.relationship('Comments', backref='blogpost', lazy='dynamic')
-    
+
     def __repr__(self):
         return self.title
 

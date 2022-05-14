@@ -18,7 +18,7 @@
     </a>
     <div class="postcard__text">
         <p class="postcard__title blue"><a
-                href="{{ url_for('main.read_post', post_title=blogpost.title, post_id=blogpost.id) }}"
+                href="{{ url_for('main.read_post', post_title=blogpost.title, post_id=blogpost.post_id) }}"
                 class="text-decoration-none">{{ blogpost.title }}</a></p>
         <div class="postcard__subtitle small">
             <time datetime="2020-05-25 12:00:00">
@@ -30,19 +30,11 @@
         <div class="postcard__preview-txt">{{ blogpost.content|truncate(250,true,'...') }}</div>
         <ul class="postcard__tagbox">
             <li class="tag__item"><a
-                    href="{{ url_for('main.read_post', post_title=blogpost.title, post_id=blogpost.id) }}"
+                    href="{{ url_for('main.read_post', post_title=blogpost.title, post_id=blogpost.post_id) }}"
                     class="text-decoration-none fs-6">Read</a>
         </ul>
     </div>
 </article>
-
-<div>
-    <form method="POST">
-        {{ form.csrf_token() }}
-        {{ render_field(form.comment, placeholder='Be nice. 200 characters max') }}
-        {{ render_field(form.submit, button_size='sm', class="btn-success") }}
-    </form>
-</div>
 {% endfor %}
 
 {% endblock content %}

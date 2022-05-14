@@ -15,8 +15,25 @@ def index():
 
 @main.route('/<post_title>/<post_id>')
 def read_post(post_title, post_id):
-    post = BlogPost.query.filter_by(id=post_id).first()
-    return render_template('single-post.html', post=post)
+    post = BlogPost.query.filter_by(post_id=post_id).first()
+
+    comment_form = CommentForm()
+
+    post_comments = Comments.query.filter_by(post_id=post_id).first()
+
+    if request.method == "POST":
+        if comment_form.validate_on_submit():
+
+            comment = comment_form.comment.data
+            new_comment = Comments(comment=comment, post_id=post_id, user_id=current_user.user_id)
+
+            Comments.save_comment(new_comment)
+
+            return redirect(url_for('main.add_comment', post_id=post_id))
+        else:
+            flash('Invalid comment. Remember, BE NICE')
+
+    return render_template('single-post.html', post=post, comment_form=comment_form, comments=post_comments)
 
 
 @main.route('/add/<user_id>', methods=["GET", "POST"])
@@ -40,24 +57,3 @@ def add_blogpost(user_id):
         return redirect(url_for('main.index'))
 
     return render_template('add-blogpost.html', form=form)
-
-
-@main.route('/comment/<post_id>', methods=["GET", "POST"])
-def add_comment(post_id):
-    comment_form = CommentForm()
-
-    post_comments = Comments.query.filter_by(post_id=post_id).first()
-
-    if request.method == "POST":
-        if comment_form.validate_on_submit():
-
-            comment = comment_form.comment.data
-            new_comment = Comments(comment=comment, post_id=post_id, user_id=current_user.user_id)
-
-            Comments.save_comment(new_comment)
-
-            return redirect(url_for('main.add_comment', post_id=post_id))
-        else:
-            flash('Invalid comment. Remember, BE NICE')
-
-    return render_template('comment.html', form=comment_form, comments=post_comments)

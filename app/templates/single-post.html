@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% from 'bootstrap5/utils.html' import render_icon %}
+{% from 'bootstrap5/form.html' import render_field %}
 
 {% block title %} Home {% endblock %}
 
@@ -17,4 +18,13 @@
         {{ post.content }}
     </p>
 </article>
+
+<div class="text-light mb-5">
+    <p class="fs-3 mt-5">Comments</p>
+    <form method="POST">
+        {{ comment_form.csrf_token() }}
+        {{ render_field(comment_form.comment, placeholder='Be nice. 200 characters max') }}
+        {{ render_field(comment_form.submit, button_size='sm', class="btn-success") }}
+    </form>
+</div>
 {% endblock content %}
