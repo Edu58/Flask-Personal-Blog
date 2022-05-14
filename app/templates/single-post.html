@@ -2,6 +2,11 @@
 {% from 'bootstrap5/utils.html' import render_icon %}
 {% from 'bootstrap5/form.html' import render_field %}
 
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='single-post.css') }}">
+{% endblock styles %}
+
 {% block title %} Home {% endblock %}
 
 {% block content %}
@@ -32,13 +37,13 @@
 <div class="mt-4">
     <ol class="list-group list-group-numbered text-light">
         {% for comment in comments %}
-        <li class="list-group-item my-3">
+        <li class="list-group-item my-3 rounded">
             <small class="float-end fst-italic">
                 {{ moment(comment.posted_on).format('LL') }}
             </small>
 
             {{ comment.comment }}
-            <div>
+            <div class="mt-2">
                 <small class="float-end fst-italic">by {{ comment.username }} </small>
             </div>
         </li>
