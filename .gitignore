@@ -84,6 +84,8 @@ ipython_config.py
 # Pycharm
 .idea
 
+.gitignore
+
 # pyenv
 .python-version
 
