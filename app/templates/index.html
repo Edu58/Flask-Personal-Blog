@@ -5,4 +5,22 @@
 
 {% block content %}
 
+{% for blogpost in blogposts %}
+<div class="card rounded-3" style="width: 100%;">
+    <div class="row p-3">
+        <div class="col-sm-5 rounded-3">
+            <img class="card-img"
+                 src="https://images.unsplash.com/photo-1527960669566-f882ba85a4c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YXdlc29tZSUyMHBpY3xlbnwwfHwwfHw%3D&w=1000&q=80"
+                 alt="{{ blogpost.title }}">
+        </div>
+        <div class="col-sm-7">
+            <div class="card-body">
+                <h5 class="card-title">{{ blogpost.title }}</h5>
+                <a href="#" class="btn btn-primary float-end">Read</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
 {% endblock content %}
