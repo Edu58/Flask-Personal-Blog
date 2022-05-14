@@ -11,20 +11,22 @@
 {% block content %}
 
 {% for blogpost in blogposts %}
-<div class="card p-2">
-    <div class="row g-0">
-        <div class="col-sm-4">
-            <img class="card-img img-fluid"
-                 src="https://images.unsplash.com/photo-1527960669566-f882ba85a4c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YXdlc29tZSUyMHBpY3xlbnwwfHwwfHw%3D&w=1000&q=80"
-                 alt="{{ blogpost.title }}">
+<article class="postcard dark blue">
+    <a class="postcard__img_link" href="#">
+        <img class="postcard__img"
+             src="https://www.planetware.com/wpimages/2020/02/france-in-pictures-beautiful-places-to-photograph-eiffel-tower.jpg"
+             alt="{{ blogpost.title }}"/>
+    </a>
+    <div class="postcard__text">
+        <h1 class="postcard__title blue"><a href="#" class="text-decoration-none">{{ blogpost.title }}</a></h1>
+        <div class="postcard__subtitle small mb-3">
+            <p>
+                {{ moment(blogpost.created_on).format('LL') }} - by {{ blogpost.author }}
+            </p>
         </div>
-        <div class="col-sm-6">
-            <div class="card-body text-light">
-                <h5 class="card-title fs-4">{{ blogpost.title }}</h5>
-            </div>
-        </div>
+        <div class="postcard__preview-txt">{{ blogpost.content }}</div>
     </div>
-</div>
+</article>
 {% endfor %}
 
 {% endblock content %}

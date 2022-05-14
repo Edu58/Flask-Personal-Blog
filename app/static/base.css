@@ -5,6 +5,7 @@
 
 body {
 background-color: #202330;
+text-rendering: optimizeLegibility;
 }
 
 nav #brand {
