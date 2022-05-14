@@ -17,9 +17,9 @@
              alt="Image Title"/>
     </a>
     <div class="postcard__text">
-        <h1 class="postcard__title blue"><a
+        <p class="postcard__title blue"><a
                 href="{{ url_for('main.read_post', post_title=blogpost.title, post_id=blogpost.id) }}"
-                class="text-decoration-none">{{ blogpost.title }}</a></h1>
+                class="text-decoration-none">{{ blogpost.title }}</a></p>
         <div class="postcard__subtitle small">
             <time datetime="2020-05-25 12:00:00">
                 <i>{{ render_icon('calendar3') }}</i> &nbsp; {{ moment(blogpost.created_on).format('LL') }} by {{
