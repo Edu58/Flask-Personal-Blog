@@ -10,7 +10,7 @@
     {{ bootstrap.load_css() }}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
           rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='base.css') }}">
     {% endblock styles %}
@@ -18,10 +18,10 @@
     <title>{% block title %} {% endblock title %}</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-2">
+<nav class="navbar navbar-expand-sm mb-2">
     <div class="container-fluid d-flex justify-content-between">
         <div class="container-fluid d-flex justify-content-between">
-            <a class="navbar-brand fs-4 fst-italic fw-normal" href="#">Ed-Blog</a>
+            <a class="navbar-brand text-light" href="#" id="brand">Ed-Blog</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,12 +41,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page"
-                       href="">
-                        <button class="btn btn-sm btn btn-outline-light">Profile</button>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="">
                         <button class="btn btn btn-sm btn-outline-light">Logout</button>
                     </a>
@@ -54,11 +48,6 @@
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="">
                         <button class="btn btn btn-sm btn-outline-light">Login</button>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="">
-                        <button class="btn btn btn-sm btn-outline-light">Signup</button>
                     </a>
                 </li>
             </ul>

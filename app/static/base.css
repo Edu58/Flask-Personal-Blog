@@ -1,0 +1,14 @@
+* {
+    font-family: 'Poppins', sans-serif !important;
+    text-decoration: none;
+}
+
+body {
+background-color: #202330;
+}
+
+nav #brand {
+font-weight: 600;
+font-size: 1.8rem;
+font-style: italic;
+}
