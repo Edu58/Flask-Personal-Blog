@@ -40,3 +40,24 @@ def add_blogpost(user_id):
         return redirect(url_for('main.index'))
 
     return render_template('add-blogpost.html', form=form)
+
+
+@main.route('/comment/<post_id>', methods=["GET", "POST"])
+def add_comment(pitch_id):
+    comment_form = CommentForm()
+
+    pitch_comments = Pitches.query.filter_by(pitch_id=pitch_id).first()
+
+    if request.method == "POST":
+        if comment_form.validate_on_submit():
+
+            comment = comment_form.comment.data
+            new_comment = Comments(comment=comment, post_id=post_id, user_id=current_user.user_id)
+
+            Comments.save_comment(new_comment)
+
+            return redirect(url_for('main.index'))
+        else:
+            flash('Invalid comment. Remember, BE NICE')
+
+    return render_template('comment.html', form=comment_form, comments=pitch_comments)
