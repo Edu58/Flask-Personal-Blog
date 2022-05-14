@@ -10,6 +10,8 @@
 
 {% block content %}
 
+<p class="h2 text-center text-light mb-3">Latest Articles</p>
+
 {% for blogpost in blogposts %}
 <article class="postcard dark">
     <a class="postcard__img_link" href="#">
@@ -32,6 +34,11 @@
             <li class="tag__item"><a
                     href="{{ url_for('main.read_post', post_title=blogpost.title, post_id=blogpost.post_id) }}"
                     class="text-decoration-none fs-6">Read</a>
+                {% if current_user.is_authenticated %}
+            <li class="tag__item delete"><a
+                    href="{{ url_for('main.delete_post', post_id=blogpost.post_id) }}"
+                    class="text-decoration-none fs-6">Delete</a>
+                {% endif %}
         </ul>
     </div>
 </article>

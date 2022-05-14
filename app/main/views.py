@@ -2,14 +2,15 @@ from . import main
 from app import db, photos
 from app.models import BlogPost, Comments
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_required, current_user
+from flask_login import login_required
 from .forms import NewBlogPost, CommentForm
 from werkzeug.utils import secure_filename
+from sqlalchemy import desc
 
 
 @main.route('/')
 def index():
-    blogposts = BlogPost.query.all()
+    blogposts = BlogPost.query.order_by(desc(BlogPost.created_on))
     return render_template('index.html', blogposts=blogposts)
 
 
@@ -58,3 +59,18 @@ def add_blogpost(user_id):
         return redirect(url_for('main.index'))
 
     return render_template('add-blogpost.html', form=form)
+
+
+@main.route('/<post_id>', methods=["GET", "DELETE"])
+@login_required
+def delete_post(post_id):
+    post_to_delete = BlogPost.query.filter_by(post_id=post_id).first()
+
+    if post_to_delete:
+        db.session.delete(post_to_delete)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    else:
+        pass
+
+    return redirect(url_for('main.index'))

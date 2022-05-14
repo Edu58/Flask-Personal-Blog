@@ -57,10 +57,6 @@ class BlogPost(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def delete_blogpost(self):
-        db.session.delete(self)
-        db.session.commit()
-
 
 class Comments(db.Model):
     __tablename__ = 'comments'
@@ -73,8 +69,4 @@ class Comments(db.Model):
 
     def save_comment(self):
         db.session.add(self)
-        db.session.commit()
-
-    def delete_comment(self):
-        db.session.delete(self)
         db.session.commit()

@@ -14,10 +14,6 @@
     background-color: #18151ff3;
 }
 
-a {
-    color: inherit;
-}
-
 h1,
 .h1 {
     margin-bottom: 0.5rem;
@@ -89,6 +85,11 @@ h1,
 
 .postcard .postcard__tagbox .tag__item:hover {
     background: rgba(83, 83, 83, 0.8);
+}
+
+.postcard .postcard__tagbox .tag__item.delete {
+    color: white !important;
+    background: red;
 }
 
 .postcard:before {
