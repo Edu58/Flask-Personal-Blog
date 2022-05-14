@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/utils.html' import render_icon %}
+
+{% block title %} Home {% endblock %}
+
+{% block content %}
+<article class="text-light">
+    <div class="mb-5">
+        <h2>{{ post.title }}</h2>
+        <small>{{ moment(post.created_on).format('LL') }} - by {{ post.author }}</small>
+    </div>
+    <div class="text-center w-75 m-auto">
+        <img class="img-fluid" src="{{ url_for('static', filename=post.cover_image)  }}" alt="{{ post.title }}">
+    </div>
+
+    <p class="mt-4">
+        {{ post.content }}
+    </p>
+</article>
+{% endblock content %}

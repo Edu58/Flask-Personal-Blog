@@ -13,6 +13,12 @@ def index():
     return render_template('index.html', blogposts=blogposts)
 
 
+@main.route('/<post_title>/<post_id>')
+def read_post(post_title, post_id):
+    post = BlogPost.query.filter_by(id=post_id).first()
+    return render_template('single-post.html', post=post)
+
+
 @main.route('/add/<user_id>', methods=["GET", "POST"])
 @login_required
 def add_blogpost(user_id):
