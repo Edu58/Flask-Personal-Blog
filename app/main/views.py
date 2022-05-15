@@ -1,7 +1,7 @@
 from . import main
 from app import db, photos
 from app.models import BlogPost, Comments, User
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, abort
 from flask_login import login_required, current_user
 from .forms import NewBlogPost, CommentForm
 from werkzeug.utils import secure_filename
@@ -106,6 +106,23 @@ def profile(first_name):
 @login_required
 def upload_profile_pic(user_id):
     user = User.query.filter_by(user_id=user_id).first()
+
+    if 'photo' in request.files:
+        filename = photos.save(request.files['photo'])
+        path = f'photos/{filename}'
+        user.profile_path = path
+        db.session.commit()
+
+    return redirect(url_for('main.profile', first_name=current_user.first_name))
+
+
+@main.route('/update-profile-picture/<user_id>', methods=['POST'])
+@login_required
+def update_profile_pic(user_id):
+    user = User.query.filter_by(user_id=user_id).first()
+
+    if user is None:
+        abort(404)
 
     if 'photo' in request.files:
         filename = photos.save(request.files['photo'])
