@@ -22,6 +22,11 @@ def about():
     return render_template('about.html')
 
 
+@main.route('/contact')
+def about():
+    return render_template('contact.html')
+
+
 @main.route('/<post_title>/<post_id>', methods=['GET', 'POST'])
 def read_post(post_title, post_id):
     post = BlogPost.query.filter_by(post_id=post_id).first()
