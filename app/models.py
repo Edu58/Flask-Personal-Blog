@@ -70,3 +70,10 @@ class Comments(db.Model):
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
+
+
+class Quote:
+
+    def __init__(self, author, quote):
+        self.author = author
+        self.quote = quote
