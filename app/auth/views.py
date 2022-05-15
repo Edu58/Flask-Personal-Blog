@@ -64,4 +64,4 @@ def signup():
 def logout():
     logout_user()
     flash('logged out successfully', category='danger')
-    return redirect(url_for('auth.login'))
+    return redirect(url_for('main.index'))

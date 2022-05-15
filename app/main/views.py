@@ -14,7 +14,6 @@ def index():
     blogposts = BlogPost.query.order_by(desc(BlogPost.created_on))
 
     quote = get_quote()
-    print(quote)
     return render_template('index.html', blogposts=blogposts, quote=quote)
 
 

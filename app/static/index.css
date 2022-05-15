@@ -88,7 +88,6 @@ h1,
 }
 
 .postcard .postcard__tagbox .tag__item.delete {
-    color: white !important;
     background: red;
 }
 
@@ -165,7 +164,7 @@ h1,
         content: "";
         position: absolute;
         display: block;
-        top: -20%;
+        top: -15%;
         height: 130%;
         width: 55px;
     }

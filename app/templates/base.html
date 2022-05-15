@@ -18,7 +18,7 @@
     <title>{% block title %} {% endblock title %}</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-dark mb-2 fixed-top">
+<nav class="navbar navbar-expand-sm navbar-dark fixed-top">
     <div class="container-fluid d-flex justify-content-between">
         <div class="container-fluid d-flex justify-content-between">
             <a class="navbar-brand text-light" href="{{ url_for('main.index') }}" id="brand">E-Blog</a>
@@ -83,7 +83,7 @@
         </div>
     </div>
 </nav>
-<div class="container" style="margin-top: 8rem;">
+<div class="container" style="margin-top: 6rem;">
 
     {{ render_messages() }}
 
