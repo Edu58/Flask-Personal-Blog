@@ -77,3 +77,17 @@ def delete_post(post_id):
         pass
 
     return redirect(url_for('main.index'))
+
+
+@main.route('/<post_title>/<post_id>/<comment_id>', methods=["GET", "DELETE"])
+@login_required
+def delete_comment(post_title, post_id, comment_id):
+    comment_to_delete = Comments.query.filter_by(comment_id=comment_id).first()
+
+    if comment_to_delete:
+        db.session.delete(comment_to_delete)
+        db.session.commit()
+        flash('Comment deleted successfully', category='success')
+        return redirect(url_for('main.read_post', post_title=post_title, post_id=post_id))
+    else:
+        pass

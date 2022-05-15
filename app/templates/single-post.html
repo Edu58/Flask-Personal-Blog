@@ -45,7 +45,10 @@
             {{ comment.comment }}
             <div class="mt-2">
                 {% if current_user.is_authenticated %}
-                <small class="float-start fst-italic bg-danger text-light btn btn-sm">delete</small>
+                <a href="{{ url_for('main.delete_comment', post_title=post.title, post_id=post.post_id, comment_id=comment.comment_id) }}"
+                   class="text-decoration-none">
+                    <small class="float-start fst-italic bg-danger text-light btn btn-sm">delete</small>
+                </a>
                 {% endif %}
                 <small class="float-end fst-italic">by {{ comment.username }} </small>
             </div>
