@@ -1,16 +1,22 @@
+import os
+
+
 class Config:
+    SECRET_KEY = os.environ.get("SECRET_KEY")
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
-    SIMPLEMDE_JS_IIFE = True
-    SIMPLEMDE_USE_CDN = True
 
 
 class DevConfig(Config):
     DEBUG = True
-    FLASK_ENV = 'development'
 
 
 class ProdConfig(Config):
     DEBUG = False
+    uri = os.environ.get("DATABASE_URL")  # or other relevant config var
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)
+    # rest of connection code using the connection string `uri`
+    SQLALCHEMY_DATABASE_URI = uri
 
 
 config_option = {
