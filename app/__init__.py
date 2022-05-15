@@ -5,12 +5,14 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_uploads import IMAGES, UploadSet, configure_uploads
+from flask_simplemde import SimpleMDE
 
 db = SQLAlchemy()
 login = LoginManager()
 photos = UploadSet('photos', IMAGES)
 bootstrap = Bootstrap5()
 moment = Moment()
+simple = SimpleMDE()
 
 
 def create_app(config_name):
@@ -29,6 +31,8 @@ def create_app(config_name):
     moment.init_app(app)
 
     configure_uploads(app, photos)
+
+    simple.init_app(app)
 
     from app.main import main
     app.register_blueprint(main)
