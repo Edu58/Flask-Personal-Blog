@@ -136,3 +136,19 @@ def update_profile_pic(user_id):
         db.session.commit()
 
     return redirect(url_for('main.profile', first_name=current_user.first_name))
+
+
+@main.route('/update-post/<post_id>', methods=['POST'])
+@login_required
+def update_post(post_id):
+    post = BlogPost.query.filter_by(post_id=post_id).first()
+
+    if post is None:
+        abort(404)
+    # if 'photo' in request.files:
+    #     filename = photos.save(request.files['photo'])
+    #     path = f'photos/{filename}'
+    #     user.profile_path = path
+    #     db.session.commit()
+
+    return render_template('update-post.html', post=post)
