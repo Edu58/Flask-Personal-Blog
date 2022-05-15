@@ -44,6 +44,9 @@
 
             {{ comment.comment }}
             <div class="mt-2">
+                {% if current_user.is_authenticated %}
+                <small class="float-start fst-italic bg-danger text-light btn btn-sm">delete</small>
+                {% endif %}
                 <small class="float-end fst-italic">by {{ comment.username }} </small>
             </div>
         </li>
