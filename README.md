@@ -2,6 +2,8 @@
 
 A personal blog made with Flask, Bootstrap5 and PostgreSQL
 
+Live link - https://edusblog.herokuapp.com
+
 ### By: Edwin Karimi
 
 ## Table of Content
