@@ -56,6 +56,8 @@ def add_blogpost(user_id):
         db.session.add(new_blogpost)
         db.session.commit()
 
+        flash('Post added successfully', category='success')
+
         return redirect(url_for('main.index'))
 
     return render_template('add-blogpost.html', form=form)
@@ -69,6 +71,7 @@ def delete_post(post_id):
     if post_to_delete:
         db.session.delete(post_to_delete)
         db.session.commit()
+        flash('Post deleted successfully', category='success')
         return redirect(url_for('main.index'))
     else:
         pass
