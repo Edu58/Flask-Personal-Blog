@@ -22,8 +22,8 @@ def about():
     return render_template('about.html')
 
 
-@main.route('/contact')
-def about():
+@main.route('/contact', methods=['GET'])
+def contact():
     return render_template('contact.html')
 
 
