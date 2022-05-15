@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% from 'bootstrap5/utils.html' import render_icon %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center flex-column align-items-center mt-5">
+    <p class="text-center fs-2">Your Profile</p>
+    <div class="card p-3" style="max-width: 20rem; height: auto;">
+        {% if user.profile_path %}
+        <img src="{{url_for('static', filename=user.profile_path)}}" alt="{{ email }}"
+             class="card-img-top img-fluid img-thumbnail" style="width: auto; max-height: 20rem;">
+
+        <form action="{{url_for('main.update_profile_pic',user_id=user.user_id)}}" method="POST"
+              enctype="multipart/form-data" class="my-2">
+            <input type="file" name="photo" class="form-control" required>
+            <button type="submit" class="btn btn-sm btn-success mt-2 w-100 mx-auto">update photo</button>
+        </form>
+        {% else %}
+        <p style="width: 15rem; height: 15rem; margin: auto; border-radius: 50%; background-color: gray;"></p>
+
+        <form action="{{url_for('main.upload_profile_pic',user_id=current_user.user_id)}}" method="POST"
+              enctype="multipart/form-data" class="my-2">
+            <input type="file" name="photo" class="form-control" required>
+            <button type="submit" class="btn btn-sm btn-success mt-2 w-100 mx-auto">upload</button>
+        </form>
+        {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">Name: {{ user.first_name | capitalize }} {{ user.last_name | capitalize}}</h5>
+            <p class="card-text">Email: {{ user.email }}</p>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <p class="fs-3">Your Pitches</p>
+    </div>
+</div>
+
+<div>
+    <ol class="list-group list-group-numbered">
+        {% for pitch in user.pitches %}
+        <li class="list-group-item my-2">
+            {{ pitch.pitch_content }}
+            <div class="float-end">
+                <span class="badge bg-secondary text-warning">{{ render_icon('hand-thumbs-up-fill') }} {{ pitch.get_likes(pitch.pitch_id) }}</span>
+                <span class="badge bg-secondary">{{ render_icon('hand-thumbs-down-fill') }} {{ pitch.get_dislikes(pitch.pitch_id) }}</span>
+            </div>
+        </li>
+        {% endfor %}
+    </ol>
+</div>
+{% endblock content %}
