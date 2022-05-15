@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <div class="mt-4 text-light">
+    <div class="mt-5 text-light">
         <p class="fs-3">Your Articles</p>
     </div>
 </div>
@@ -39,8 +39,13 @@
 <div>
     <ol class="list-group list-group-numbered text-light">
         {% for post in posts %}
-        <li class="list-group-item my-2 text-light">
+        <li class="list-group-item my-2">
             {{ post.title }}
+            <div>
+                <small class="float-end">
+                    {{ moment(post.created_on).format('LL') }}
+                </small>
+            </div>
         </li>
         {% endfor %}
     </ol>
