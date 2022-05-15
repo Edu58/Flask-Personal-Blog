@@ -138,17 +138,39 @@ def update_profile_pic(user_id):
     return redirect(url_for('main.profile', first_name=current_user.first_name))
 
 
-@main.route('/update-post/<post_id>', methods=['POST'])
+@main.route('/update-post/<post_id>', methods=["GET", "POST"])
 @login_required
 def update_post(post_id):
+    form = NewBlogPost()
+
     post = BlogPost.query.filter_by(post_id=post_id).first()
+
+    if request.method == 'GET':
+        form.author.data = post.author
+        form.title.data = post.title
+        form.content.data = post.content
 
     if post is None:
         abort(404)
-    # if 'photo' in request.files:
-    #     filename = photos.save(request.files['photo'])
-    #     path = f'photos/{filename}'
-    #     user.profile_path = path
-    #     db.session.commit()
 
-    return render_template('update-post.html', post=post)
+    # Submission handling
+    if request.method == "POST" and form.validate_on_submit():
+        title = form.title.data
+        author = form.author.data
+        image = form.cover_image.data
+        content = form.content.data
+
+        filename = secure_filename(image.filename)
+        photos.save(image)
+        path = f'photos/{filename}'
+        post.title = title
+        post.author = author
+        post.cover_image = path
+        post.content = content
+        db.session.commit()
+
+        flash('Post updated successfully', category='success')
+
+        return redirect(url_for('main.index'))
+
+    return render_template('update-post.html', post=post, form=form)
