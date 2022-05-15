@@ -6,12 +6,16 @@ from flask_login import login_required
 from .forms import NewBlogPost, CommentForm
 from werkzeug.utils import secure_filename
 from sqlalchemy import desc
+from api_requests import get_quote
 
 
 @main.route('/')
 def index():
     blogposts = BlogPost.query.order_by(desc(BlogPost.created_on))
-    return render_template('index.html', blogposts=blogposts)
+
+    quote = get_quote()
+    print(quote)
+    return render_template('index.html', blogposts=blogposts, quote=quote)
 
 
 @main.route('/<post_title>/<post_id>', methods=['GET', 'POST'])
