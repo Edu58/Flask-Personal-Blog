@@ -55,7 +55,8 @@ def add_blogpost(user_id):
         filename = secure_filename(image.filename)
         photos.save(image)
         path = f'photos/{filename}'
-        new_blogpost = BlogPost(author=author, title=title, cover_image=path, content=content)
+        new_blogpost = BlogPost(author=author, title=title, cover_image=path, content=content,
+                                user_id=current_user.user_id)
         db.session.add(new_blogpost)
         db.session.commit()
 
@@ -99,7 +100,11 @@ def delete_comment(post_title, post_id, comment_id):
 @main.route('/profile/<first_name>', methods=["GET", "POST"])
 @login_required
 def profile(first_name):
-    return render_template('profile.html', user=current_user)
+    posts = BlogPost.query.filter_by(user_id=current_user.user_id).all()
+
+    print(posts)
+
+    return render_template('profile.html', user=current_user, posts=posts)
 
 
 @main.route('/user/upload-profile-picture/<user_id>', methods=['POST'])

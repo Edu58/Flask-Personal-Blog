@@ -50,7 +50,7 @@ h1,
 }
 
 .postcard__text {
-    padding: 1.2rem;
+    padding: 1.5rem;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -164,7 +164,7 @@ h1,
         content: "";
         position: absolute;
         display: block;
-        top: -15%;
+        top: -20%;
         height: 130%;
         width: 55px;
     }

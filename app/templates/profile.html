@@ -31,19 +31,16 @@
         </div>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-4 text-light">
         <p class="fs-3">Your Articles</p>
     </div>
 </div>
 
 <div>
-    <ol class="list-group list-group-numbered">
-        {% for post in user.posts %}
-        <li class="list-group-item my-2">
+    <ol class="list-group list-group-numbered text-light">
+        {% for post in posts %}
+        <li class="list-group-item my-2 text-light">
             {{ post.title }}
-            <small>
-                on {{ moment(post.created_on).format('LL') }}
-            </small>
         </li>
         {% endfor %}
     </ol>
