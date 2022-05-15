@@ -2,7 +2,7 @@ from . import main
 from app import db, photos
 from app.models import BlogPost, Comments
 from flask import render_template, request, redirect, url_for, flash
-from flask_login import login_required
+from flask_login import login_required, current_user
 from .forms import NewBlogPost, CommentForm
 from werkzeug.utils import secure_filename
 from sqlalchemy import desc
@@ -94,3 +94,9 @@ def delete_comment(post_title, post_id, comment_id):
         return redirect(url_for('main.read_post', post_title=post_title, post_id=post_id))
     else:
         pass
+
+
+@main.route('/profile/<first_name>', methods=["GET", "POST"])
+@login_required
+def profile(first_name):
+    return render_template('profile.html', user=current_user)
