@@ -174,3 +174,8 @@ def update_post(post_id):
         return redirect(url_for('main.index'))
 
     return render_template('update-post.html', post=post, form=form)
+
+
+@main.route('/about', methods=["GET", "POST"])
+def about():
+    return render_template('about.html')
