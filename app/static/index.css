@@ -87,10 +87,6 @@ h1,
     background: rgba(83, 83, 83, 0.8);
 }
 
-.postcard .postcard__tagbox .tag__item.delete {
-    background: red;
-}
-
 .postcard:before {
     content: "";
     position: absolute;

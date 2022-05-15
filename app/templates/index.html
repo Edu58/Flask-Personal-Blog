@@ -39,9 +39,12 @@
                     href="{{ url_for('main.read_post', post_title=blogpost.title, post_id=blogpost.post_id) }}"
                     class="text-decoration-none text-light fs-6">Read</a>
                 {% if current_user.is_authenticated %}
-            <li class="tag__item delete"><a
+            <li class="tag__item bg-danger"><a
                     href="{{ url_for('main.delete_post', post_id=blogpost.post_id) }}"
                     class="text-decoration-none text-light fs-6">Delete</a>
+            <li class="tag__item bg-primary"><a
+                    href="{{ url_for('main.update_post', post_id=blogpost.post_id) }}"
+                    class="text-decoration-none text-light fs-6">Update</a>
                 {% endif %}
         </ul>
     </div>
