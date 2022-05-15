@@ -53,6 +53,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"
+                       href="{{ url_for('main.profile', first_name=current_user.first_name) }}">
+                        <button class="btn btn-sm btn text-light fw-bold">Profile</button>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ url_for('auth.logout') }}">
                         <button class="btn btn btn-sm btn-outline-light">Logout</button>
                     </a>
