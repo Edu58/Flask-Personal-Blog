@@ -17,6 +17,11 @@ def index():
     return render_template('index.html', blogposts=blogposts, quote=quote)
 
 
+@main.route('/about')
+def about():
+    return render_template('about.html')
+
+
 @main.route('/<post_title>/<post_id>', methods=['GET', 'POST'])
 def read_post(post_title, post_id):
     post = BlogPost.query.filter_by(post_id=post_id).first()
@@ -174,8 +179,3 @@ def update_post(post_id):
         return redirect(url_for('main.index'))
 
     return render_template('update-post.html', post=post, form=form)
-
-
-@main.route('/about', methods=["GET", "POST"])
-def about():
-    return render_template('about.html')
